@@ -6,11 +6,11 @@ public class Main {
 
         boolean flag = true;
         while(flag) {
-            String line = sc.nextLine();
+            String[] line = sc.nextLine().split(" ");
 
-            int a = Integer.parseInt(line.split(" ")[0]);
-            int b = Integer.parseInt(line.split(" ")[1]);
-            int c = Integer.parseInt(line.split(" ")[2]);
+            int a = Integer.parseInt(line[0]);
+            int b = Integer.parseInt(line[1]);
+            int c = Integer.parseInt(line[2]);
 
             if(a == 0 && b == 0 && c == 0) {
                 flag = false;
@@ -20,9 +20,7 @@ public class Main {
             int[] array = {a, b, c};
             int max = 0;
             for(int i = 0; i < array.length; ++i) {
-                if(array[max] < array[i]) {
-                    max = i;
-                }
+                if(array[max] < array[i]) max = i;
             }
 
             for(int i = 0; i < array.length; ++i) {
