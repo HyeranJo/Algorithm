@@ -4,45 +4,24 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        boolean flag = true;
-        while(flag) {
-            String[] line = sc.nextLine().split(" ");
+        while(true) {
+            List<Integer> data = new ArrayList<>();
+            data.add(sc.nextInt());
+            data.add(sc.nextInt());
+            data.add(sc.nextInt());
 
-            int a = Integer.parseInt(line[0]);
-            int b = Integer.parseInt(line[1]);
-            int c = Integer.parseInt(line[2]);
+            int sum = data.stream().reduce((x,y)->x+y).get();
+            
+            int max = Collections.max(data);
+            if(max == 0) break;
 
-            if(a == 0 && b == 0 && c == 0) {
-                flag = false;
-                break;
-            }
+            Set<Integer> dataSet = new HashSet<>(data);
+            int count = dataSet.size();
 
-            int[] array = {a, b, c};
-            int max = 0;
-            for(int i = 0; i < array.length; ++i) {
-                if(array[max] < array[i]) max = i;
-            }
-
-            for(int i = 0; i < array.length; ++i) {
-                if(i == max) {
-                    int sum = 0;
-                    for(int j = 0; j < array.length; ++j) {
-                        if(j != max) sum += array[j];
-                    }
-                    if(array[i] >= sum) {
-                        System.out.println("Invalid");
-                    } else {
-                        int count = 0;
-                        if(a == b) count += 1;
-                        if(b == c) count += 1;
-                        if(c == a) count += 1;
-
-                        if(count == 3) System.out.println("Equilateral");
-                        else if(count >= 1) System.out.println("Isosceles");
-                        else System.out.println("Scalene");
-                    }
-                }
-            }
+            if(sum - max <= max) System.out.println("Invalid");
+            else if(count == 1) System.out.println("Equilateral");
+            else if(count == 2) System.out.println("Isosceles");
+            else System.out.println("Scalene");
         }
     }
 }
