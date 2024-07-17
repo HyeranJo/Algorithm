@@ -5,12 +5,15 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
 
-        if(num == 1) System.out.println(1);
-        else if(num <= 7) System.out.println(2);
-        else System.out.println(calc(num, 1, 0));
+        int start = 1;
+        int level = 1;
+
+        System.out.println(calc(num, 2, start, level));
     }
-    public static int calc(int num, int data, int level) {
-        if(num <= data) return 0;
-        else return calc(num -= data, 6 * level, ++level) + 1;
+    public static int calc(int num, int data, int start, int level) {
+        if(num <= 0 || num == 1) return 1;
+        else if(num <= 7) return 2;
+        else if((num - (6 * level)) < 0) return calc(1, data+=6, start, ++level) + 1;
+        else return calc(num -= (6 * level), data+=(6 * level), start, ++level) + 1;
     }
 }
