@@ -11,9 +11,6 @@ public class Main{
     }
     public static int calc(int num, int data, int level) {
         if(num <= data) return 0;
-
-        if(num <= 1) return 1;
-        else if(num <= 2) return calc(num -= 1, 6, ++level) + 1;
         else return calc(num -= data, 6 * level, ++level) + 1;
     }
 }
